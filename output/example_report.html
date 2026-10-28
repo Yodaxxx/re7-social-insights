@@ -1,0 +1,114 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@page{size:A4;margin:16mm 16mm 16mm 16mm}
+body{font-family:"Helvetica Neue",Arial,sans-serif;font-size:10pt;color:#1a1a1a;line-height:1.45}
+h1{font-size:19pt;margin:0 0 2px}h2{font-size:12.5pt;margin:18px 0 6px;border-bottom:1.5px solid #111;padding-bottom:3px}
+h3{font-size:10.5pt;margin:12px 0 4px}.sub{color:#555;margin:0 0 12px}
+table{border-collapse:collapse;width:100%;margin:4px 0 8px;font-size:9pt}th,td{border:1px solid #ccc;padding:4px 6px;text-align:left;vertical-align:top}th{background:#f1f1f1}
+.flow{display:flex;gap:8px;margin:6px 0}.box{flex:1;border:1.5px solid #111;border-radius:6px;padding:7px 9px;font-size:9pt}.box b{display:block;font-size:10pt;margin-bottom:2px}
+.draft{border-left:3px solid #111;background:#f7f7f7;padding:8px 11px;margin:6px 0 10px;white-space:pre-wrap;font-size:9.3pt}
+.alert{border:1.5px solid #b00;background:#fff4f4;padding:8px 11px;border-radius:5px}
+ul{margin:4px 0 6px 18px;padding:0}li{margin:2px 0}.small{font-size:8.5pt;color:#555}code{font-size:8.8pt}
+.draft,table,.alert{page-break-inside:avoid}h2,h3{page-break-after:avoid}
+</style></head><body>
+<h1>Re7 social insights: collect → analyse → create</h1>
+<p class="sub">Case study Part 1, Marketing Automation · Benjamin Vornique · data snapshot 28 October 2026 · code: <code>re7_social_insights.zip</code></p>
+
+<h2>1. The workflow</h2>
+<div class="flow">
+<div class="box"><b>1 · Collect</b>X API v2 (public_metrics) for @Re7Capital and @Re7Labs · LinkedIn Page analytics CSV export · Telegram public preview (t.me/s/…) · re7.capital/blog as source content. One table: <code>posts.csv</code> (channel, account, date, format, text, url, impressions, engagements).</div>
+<div class="box"><b>2 · Analyse (AI)</b>Claude tags each post with one of 7 themes (Weekly, TradFi interviews, research, events, vault/yield, company, other). The script ranks themes and formats per channel by median engagements and engagement rate → <code>insights.json</code>.</div>
+<div class="box"><b>3 · Create (AI)</b>Claude drafts an X thread, a LinkedIn post and a Telegram note from the latest Weekly and research, steered by the winning themes/formats, with channel rules and a facts-only, no-advice constraint → <code>drafts.json</code>.</div>
+</div>
+<p><code>python run.py --live</code> runs all three steps; <code>python run.py</code> replays the snapshot below. It runs weekly after The Weekly is published (cron / GitHub Actions). Drafts go to the team for review and are never posted automatically. Without an API key, rule-based fallbacks keep it running end to end.</p>
+
+<h2>2. What performs: snapshot of 22 recent posts</h2>
+<h3>LinkedIn: Re7 Capital (11K followers; engagements = reactions + comments + reposts)</h3>
+<table><tr><th>Theme</th><th>Posts</th><th>Median eng.</th><th>Best example</th></tr>
+<tr><td>Institutional research</td><td>1</td><td><b>33</b></td><td>DeFi risk framework with Clear Street (document)</td></tr>
+<tr><td>TradFi interviews (Crypto Minutes)</td><td>3</td><td>14</td><td>BCB Group / Tim Renew video: 39</td></tr>
+<tr><td>Events &amp; speaking</td><td>4</td><td>9</td><td>Vault Summit Singapore: 11</td></tr>
+<tr><td>The Weekly (link posts)</td><td>3</td><td>8</td><td>“Three Areas of Growth”: 9</td></tr></table>
+<p>By format: <b>document 33 &gt; video 14 &gt; text 9 &gt; link 8</b>.</p>
+
+<h3>X: @Re7Capital and @Re7Labs (engagements = likes + reposts + replies + quotes + bookmarks)</h3>
+<table><tr><th>Account · theme</th><th>Posts</th><th>Median views</th><th>Median eng.</th><th>Eng. rate</th></tr>
+<tr><td>Re7Capital · TradFi interviews (video)</td><td>3</td><td>323</td><td>4</td><td><b>1.24%</b></td></tr>
+<tr><td>Re7Capital · The Weekly (link)</td><td>2</td><td>315</td><td>3.5</td><td>1.06%</td></tr>
+<tr><td>Re7Labs · vault launches (partner co-tag)</td><td>2</td><td>19,042</td><td>35</td><td>0.26%</td></tr>
+<tr><td>Re7Labs · APY / yield updates</td><td>2</td><td>910</td><td>13</td><td><b>1.42%</b></td></tr></table>
+<p class="small">The pinned Sharplink interview (2,777 views, 43 eng.) is counted in the interview row. Its reach mainly reflects pinning.</p>
+
+<h3>Telegram</h3>
+<div class="alert"><b>Finding: both Re7 handles are squatted.</b> t.me/re7capital and t.me/re7labs are not operated by Re7. Their pinned posts offer the usernames for sale (“@Re7Labs is for sale!”, 157 views). For a firm whose vaults hold depositor funds, this is a brand-impersonation and phishing risk. Re7 currently has no official Telegram presence to measure.</div>
+
+<h2>3. Insights</h2>
+<ul>
+<li><b>LinkedIn rewards substance in native formats.</b> The research report (document) got about 4× the engagement of a Weekly link post. Interview clips come second. The Weekly, Re7's most regular content, performs worst because it ships as a bare link.</li>
+<li><b>X @Re7Capital has a reach problem, not a content problem.</b> Non-pinned posts get only 250–400 views, but interviews and the Weekly convert at over 1%. Better packaging (native threads, a number in the hook, the link in the last post) should lift reach.</li>
+<li><b>X @Re7Labs: partners bring reach, numbers bring engagement.</b> Co-tagged launches (Kamino/Plume, Frax/USDai) reach 9k–29k views. Plain APY posts reach about 1k but engage 5× better.</li>
+<li><b>Events are high effort for low return</b> as stand-alone “will be speaking” posts (median 9). Recap clips and takeaways after the event are the better use.</li>
+</ul>
+
+<h2>4. Recommendations</h2>
+<table><tr><th>Channel</th><th>Do more</th><th>Change</th></tr>
+<tr><td>LinkedIn</td><td>Research as PDF carousels; 30–60 s Crypto Minutes clips</td><td>Turn each Weekly into a 5-slide carousel with one chart, not a link post</td></tr>
+<tr><td>X Re7Capital</td><td>Native Weekly threads; interview quote cards</td><td>Hook with a number; link in the last post; rotate the pinned post weekly</td></tr>
+<tr><td>X Re7Labs</td><td>Co-tag partners on every launch</td><td>A weekly “vault board” post that combines APY updates</td></tr>
+<tr><td>Telegram</td><td colspan="2">Recover @re7capital and @re7labs (Fragment purchase or a Telegram impersonation report), or open a verified channel linked from re7.capital. Then use it to send Weekly and vault notes to LPs and depositors.</td></tr></table>
+
+<h2>5. Generated content: The Weekly and research, repurposed</h2>
+<p class="small">Written by Claude with the create.py prompt, using only facts from the sources below, then reviewed. Sources: The Weekly, “Three Areas of Growth in On-Chain Markets” (26 Oct); “A Framework for Decomposing DeFi Risk in the Age of AI” (with Clear Street).</p>
+
+<h3>X thread: @Re7Capital (the Weekly as a native thread)</h3>
+<div class="draft">1/ On-chain trading card volume is approaching $100M a week. At the start of the year it was under $20M.
+It's one of three on-chain markets accelerating right now 🧵
+
+2/ AI inference exchanges: on-chain venues routing demand to cheaper compute.
+
+3/ Pre-IPO perpetual futures have surged to around $650M in weekly volume.
+
+4/ Meanwhile in markets: Bitcoin is holding $80k after $600M in long liquidations. Bearish sentiment is diverging from stabilising technicals, ahead of the FOMC, ECB and BoJ meetings and Big Tech earnings.
+
+5/ In DeFi yields: stablecoin rates edged higher on Aave, Maple stayed flat, and Pendle fixed-rate markets offer a premium of over 9%.
+
+6/ The full breakdown is in this week's Re7 Weekly 👇
+re7.capital/blog/d5ca6bb6-8a10-4462-8278-800a6cb17db1</div>
+
+<h3>LinkedIn: Re7 Capital (document post: the research framework as a carousel)</h3>
+<div class="draft">How do you price DeFi risk the way TradFi prices counterparty risk?
+
+Before Re7 deploys capital, every chain, protocol and asset goes through the same methodology. With Clear Street, we have published it as a proposed foundation for an industry-wide DeFi risk standard.
+
+Drawing on the XVA framework from traditional finance, it breaks DeFi risk into three interdependent layers:
+→ Chain
+→ Protocol
+→ Asset
+
+Each layer gets a standardised score, and the framework shows how risk compounds across layers. A position is only as safe as all three combined. It also looks at how AI is reshaping DeFi risk.
+
+📎 The key slides are attached. Full report: re7.capital/blog/3b3ec006-c302-40b0-85c9-48310f1b4399
+
+#DeFi #RiskManagement #DigitalAssets</div>
+<p class="small">Carousel (5 slides): 1 · the question · 2 · the three layers · 3 · how risk compounds · 4 · standardised scores · 5 · AI and DeFi risk + link.</p>
+
+<h3>Telegram: official Re7 channel (launch note + the Weekly)</h3>
+<div class="draft">📊 Re7's Weekly: Three Areas of Growth in On-Chain Markets
+
+• On-chain trading cards: ~$100M a week (vs under $20M in January)
+• Pre-IPO perps: ~$650M weekly volume
+• AI inference exchanges routing demand to cheaper compute
+• BTC holding $80k after $600M in long liquidations
+• Pendle fixed-rate premium: over 9%
+
+Read the full Weekly 👉 re7.capital/blog/d5ca6bb6-8a10-4462-8278-800a6cb17db1
+
+This is Re7's only official channel. We never DM first and never ask for funds or keys.</div>
+
+<h2>6. Method and limits</h2>
+<ul>
+<li><b>Data.</b> 22 posts from the last 3–7 weeks, collected on 28 Oct 2026 from public pages (X status pages, the LinkedIn company feed, t.me previews). LinkedIn impressions are not public. In production they come from the admin CSV export, which unlocks engagement rates there too.</li>
+<li><b>Sample size.</b> Several theme groups have only 1–3 posts, so the rankings are directional. Run weekly, the pipeline builds a longer history, and the medians become reliable after about 8–10 weeks.</li>
+<li><b>AI steps.</b> Theme tagging and drafting call Claude (<code>RE7_MODEL</code>, default <code>claude-sonnet-4-5</code>). The prompt only allows facts present in Re7's sources and forbids investment advice and price predictions. A human review step is built in before anything is posted.</li>
+<li><b>Setup.</b> <code>pip install -r requirements.txt</code>; set <code>ANTHROPIC_API_KEY</code> and <code>X_BEARER_TOKEN</code>; drop the LinkedIn export in <code>data/</code>; run <code>python run.py --live</code>. See the README for details.</li>
+</ul>
+</body></html>

@@ -1,0 +1,135 @@
+{
+ "linkedin": {
+  "posts": 11,
+  "by_theme": [
+   {
+    "theme": "institutional_research",
+    "n": 1,
+    "median_engagements": 33,
+    "median_impressions": null,
+    "median_engagement_rate": null
+   },
+   {
+    "theme": "tradfi_interviews",
+    "n": 3,
+    "median_engagements": 14,
+    "median_impressions": null,
+    "median_engagement_rate": null
+   },
+   {
+    "theme": "events_speaking",
+    "n": 4,
+    "median_engagements": 9.0,
+    "median_impressions": null,
+    "median_engagement_rate": null
+   },
+   {
+    "theme": "weekly_market_commentary",
+    "n": 3,
+    "median_engagements": 8,
+    "median_impressions": null,
+    "median_engagement_rate": null
+   }
+  ],
+  "by_format": [
+   {
+    "format": "document",
+    "n": 1,
+    "median_engagements": 33,
+    "median_impressions": null,
+    "median_engagement_rate": null
+   },
+   {
+    "format": "video",
+    "n": 3,
+    "median_engagements": 14,
+    "median_impressions": null,
+    "median_engagement_rate": null
+   },
+   {
+    "format": "text",
+    "n": 4,
+    "median_engagements": 9.0,
+    "median_impressions": null,
+    "median_engagement_rate": null
+   },
+   {
+    "format": "link",
+    "n": 3,
+    "median_engagements": 8,
+    "median_impressions": null,
+    "median_engagement_rate": null
+   }
+  ]
+ },
+ "telegram": {
+  "posts": 2,
+  "by_theme": [
+   {
+    "theme": "other",
+    "n": 2,
+    "median_engagements": 0.0,
+    "median_impressions": 85.5,
+    "median_engagement_rate": 0.0
+   }
+  ],
+  "by_format": [
+   {
+    "format": "text",
+    "n": 2,
+    "median_engagements": 0.0,
+    "median_impressions": 85.5,
+    "median_engagement_rate": 0.0
+   }
+  ]
+ },
+ "x": {
+  "posts": 9,
+  "by_theme": [
+   {
+    "theme": "vault_launch_yield",
+    "n": 4,
+    "median_engagements": 24.5,
+    "median_impressions": 5037.0,
+    "median_engagement_rate": 0.0089
+   },
+   {
+    "theme": "tradfi_interviews",
+    "n": 3,
+    "median_engagements": 4,
+    "median_impressions": 323,
+    "median_engagement_rate": 0.0124
+   },
+   {
+    "theme": "weekly_market_commentary",
+    "n": 2,
+    "median_engagements": 3.5,
+    "median_impressions": 314.5,
+    "median_engagement_rate": 0.0106
+   }
+  ],
+  "by_format": [
+   {
+    "format": "image",
+    "n": 4,
+    "median_engagements": 24.5,
+    "median_impressions": 5037.0,
+    "median_engagement_rate": 0.0089
+   },
+   {
+    "format": "video",
+    "n": 3,
+    "median_engagements": 4,
+    "median_impressions": 323,
+    "median_engagement_rate": 0.0124
+   },
+   {
+    "format": "link",
+    "n": 2,
+    "median_engagements": 3.5,
+    "median_impressions": 314.5,
+    "median_engagement_rate": 0.0106
+   }
+  ]
+ }
+}

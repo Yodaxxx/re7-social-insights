@@ -1,0 +1,17 @@
+[
+ {
+  "title": "The Weekly: Three Areas of Growth in On-Chain Markets",
+  "url": "https://re7.capital/blog/d5ca6bb6-8a10-4462-8278-800a6cb17db1",
+  "text": "Three emerging on-chain markets are growing quickly. AI inference exchanges are routing demand to cheaper compute. On-chain trading card volumes are approaching $100M a week (vs less than $20M at the start of the year), and pre-IPO perpetual futures have surged to around $650M weekly. Bitcoin is holding $80k after $600M in long liquidations. Bearish sentiment is diverging from stabilising technicals ahead of the FOMC, ECB and BoJ meetings and Big Tech earnings. Stablecoin yields edged higher on Aave, Maple stayed flat, and Pendle fixed-rate markets offer a premium of over 9%."
+ },
+ {
+  "title": "The Weekly: Markets Are Refusing to Break",
+  "url": "https://re7.capital/blog/0c7c3a0e-3d2c-4cdb-83b5-a3084a28265b",
+  "text": "Bitcoin keeps finding buyers around $80,000 despite Brent crude near $105, hotter-than-expected US CPI and PPI, and AI financing concerns. Sentiment has fallen to Extreme Fear even though total crypto market cap is only 7% below its September peak; since sentiment peaked on 21 September, market cap declined 7% while Fear & Greed fell 38%. Crypto outperformed the Nasdaq 100 by more than 2% last week."
+ },
+ {
+  "title": "A Framework for Decomposing DeFi Risk in the Age of AI (Re7 Capital x Clear Street)",
+  "url": "https://re7.capital/blog/3b3ec006-c302-40b0-85c9-48310f1b4399",
+  "text": "Re7 Capital and Clear Street propose a foundation for an industry-wide DeFi risk standard, built on the methodology Re7 applies to every chain, protocol and asset before deploying capital. Drawing on the XVA framework from traditional finance, it breaks DeFi risk into three interdependent layers (chain, protocol, asset), examines how risks compound across them, with standardised scores for each layer, and looks at how AI is reshaping DeFi risk."
+ }
+]
